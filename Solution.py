@@ -1,18 +1,20 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+
 class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
 
-        # when there are only one record
-        if len(prices) < 2:
-            return 0
+        vals = list()
+        while head.next != None:
 
-        left = 0
-        right = 1
-        maxProfit = 0
-        while right < len(prices):
-            currentProfit = prices[right] - prices[left]
-            if currentProfit > 0:
-                maxProfit = max(currentProfit, maxProfit)
+            vals.append(head.val)
+            head = head.next
+
+            if head.val in vals:
+                return True
             else:
-                left = right
-            right += 1
-        return maxProfit
+                return False
